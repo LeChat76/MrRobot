@@ -132,5 +132,8 @@ header {
     .technologies {
         width: 100%; /* Les éléments prendront toute la largeur */
     }
+    .site-footer {
+        margin: 10px;
+    }
 }
 
