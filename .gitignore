@@ -398,5 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Projet8OC
-.venv
+venv
 

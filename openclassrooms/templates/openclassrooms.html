@@ -13,7 +13,6 @@
     <header>
         <h1>Liste des projets de ma formation.<br>Developpeur Python chez Openclassrooms</h1>
     </header>
-    <!-- <div class="paw-prints-container"></div> -->
     {% for project in projects %}
     <div class="project-container" data-aos="zoom-in-up" data-aos-easing="ease-out-cubic" data-aos-duration="1000">
         <h2>{{ project.title }}</h2>
@@ -56,6 +55,5 @@
 </footer>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="{% static 'js/openclassrooms.js' %}"></script>
-<!-- <script src="{% static 'js/randomize-background.js' %}"></script> -->
 </body>
 </html>
