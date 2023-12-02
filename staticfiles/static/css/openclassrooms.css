@@ -1,38 +1,39 @@
 h1 {
-    margin: 20px;
+    margin: 20px; /* marge exterieure sur tous les bords du titre */
+}
+
+header {
+    text-align: center; /* centrage des éléments de la zone header (h1 donc) */
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .project-container {
-    background-color: #a2c2ca;
-    border: 1px solid black;
-    padding: 10px;
-    margin: 20px;
-    margin-bottom: 10px;
-    border-radius: 20px;
+    transition: background-color 0.3s ease; /* changement de couleur mais non pris en compte à cause du plugin AOS */
+    background-color: #d3dcdf;
+    border: 2px solid black; /* bordure du cadre du container "project-container" */
+    padding: 10px; /* marge interieure du container "project-container" */
+    margin: 20px; /* marge exterieure du container "project-container" */
+    margin-bottom: 10px; /* marge exterieure haute du container "project-container" */
+    border-radius: 20px; /* angle du bord du container "project-container" */
+}
+
+.project-container:hover {
+    background-color: #8bb7c5; /* changement de couleur du container "project-container" quand la souris passe dessus */
 }
 
 .project-container h2 {
-    position: relative;
+    position: relative; /* permet un décalage par rapport à sa position normale dans le flux */
     font-size: 40px;
     margin-top: 0px;
-}
-
-.project-container h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0.1%;
-    width: 99.9%;
-    border-bottom: 1px solid black;
 }
 
 .image-description {
     display: flex;
     align-items: flex-start;
     gap: 10px; /* Espace entre l'image et la description */
-    background-color: #a59e9e;
+    background-color: #dfd5d5;
     border-radius: 20px;
-    border: 1px solid black;
+    border: 2px solid black; /* epaisseur de la bordure du container */
 }
 
 .image {
@@ -49,19 +50,18 @@ h1 {
 }
 
 .description {
-    /* flex: 1; */
     margin-top: -10px;
-    padding-left: 10px;
+    padding: 10px;
 }
 
 .url_github-duration {
     align-items: flex-start;
-    background-color: #a59e9e;
+    background-color: #dfd5d5;
     border-radius: 20px;
     margin-bottom: 10px;
     margin-top: 10px;
     padding: 10px;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .skills-technologies {
@@ -73,9 +73,9 @@ h1 {
 .technologies {
     width: 48.6%;
     padding-left: 10px;
-    background-color: #a59e9e;
+    background-color: #dfd5d5;
     border-radius: 20px;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .skills {
@@ -93,5 +93,47 @@ h1 {
     border-radius: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    border: 1px solid black;
+    border: 2px solid black;
 }
+
+/* Rrègles pour les écrans de téléphone mobile */
+@media only screen and (max-width: 700px) {
+    .project-container {
+        margin: 10px; /* Réduction de la marge exterieure pour les petits écrans */
+        padding: 5px; /* Réduction de la marge interieure pour les petits écrans */
+    }
+
+    .project-container h2 {
+        font-size: 24px; /* Réduction la taille de la police du titre h2 pour les petits écrans */
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        flex: 0 0 100%; /* L'image prendra toute la largeur */
+    }
+
+    .image img {
+        border-radius: 20px; /* Appliquer la bordure arrondie à toutes les images */
+        margin-bottom: 10px; /* Espacement entre l'image et le texte */
+    }
+
+    .image-description {
+        flex-direction: column; /* Changement de la direction de la description en colonne */
+        align-items: center; /* Centrage des descriptions */
+    }
+
+    .description {
+        margin-top: 10px; /* Ajout d'une marge supérieure pour les description pour un espacement uniforme */
+    }
+
+    .skills,
+    .technologies {
+        width: 100%; /* Les éléments prendront toute la largeur */
+    }
+    .site-footer {
+        margin: 10px;
+    }
+}
+
