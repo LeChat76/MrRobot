@@ -4,6 +4,7 @@ th, td {
     border: 1px solid rgb(196, 194, 194);
     padding: 8px;
     border-radius: 10px;
+    max-width: 320px;
 }
 
 input {
@@ -15,8 +16,11 @@ input {
     width: 70px;
 }
 
-.vlan-description input{
+.vlan-description textarea {
     height: 50px;
+    vertical-align: top;
+    border-radius: 5px;
+    resize: none;
 }
 
 .form-buttons button[type="submit"] {
@@ -28,7 +32,7 @@ input {
 hr {
     /* petit trait pour faire joli  ;-) */
     border: 1px solid #adadad;
-    width: 500px;
+    width: 600px;
     margin: 0;
     position: absolute;
     top: 350px;
@@ -41,7 +45,7 @@ h3 {
 
 /* tableau des vlans existants */
 .vlan-table {
-    width: 500px;
+    width: 600px;
     border: 2px solid rgb(88, 88, 88);
     border-radius: 10px;
     position: absolute;
@@ -58,7 +62,14 @@ th.vlan-name-title {
 
 th.vlan-description-title {
     width: 320px;
+    overflow: hidden;
 }
+
+.vlan-table td {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
 
 td.vlan-id-title {
     text-align: center;
