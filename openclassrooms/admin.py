@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.db import models
-from .models.project import Project
-from .models.skill import Skill
-from .models.technology import Technology
+from .models import Project
+from .models import Skill
+from .models import Technology
 
 
 class ProjectAdmin(admin.ModelAdmin):

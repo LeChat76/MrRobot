@@ -1,6 +1,7 @@
+# models/project_model.py
 from django.db import models
-from .technology import Technology
-from .skill import Skill
+from .technology_model import Technology
+from .skill_model import Skill
 
 
 class Project(models.Model):

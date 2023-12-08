@@ -1,9 +1,10 @@
+# models/technology_model.py
 from django.db import models
 
 
-class Skill(models.Model):
+class Technology(models.Model):
     """
-    This class describe skills learned from an project
+    This class describe technologies used for an project
     """
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False)
@@ -16,5 +17,5 @@ class Skill(models.Model):
         """
         just for the pluralisation and FR translation, perfection is perfection you know!  ;-)
         """
-        verbose_name = "Competence"
-        verbose_name_plural = "Competences"
+        verbose_name = "Technologie"
+        verbose_name_plural = "Technologies"
