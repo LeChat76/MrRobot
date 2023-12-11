@@ -18,7 +18,7 @@
         <table>
             <tr>
                 <th>ID</th>
-                <td class="vlan-id">{{ form.id }}</td>
+                <td class="vlan-id">{{ form.vlan_id }}</td>
             </tr>
             <tr>
                 <th>Nom</th>
@@ -52,7 +52,7 @@
         <tbody>
             {% for vlan in existing_vlans %}
                 <tr>
-                    <td class="vlan-id-value" >{{ vlan.id }}</td>
+                    <td class="vlan-id-value" >{{ vlan.vlan_id }}</td>
                     {% if vlan.name %}
                         <td>{{ vlan.name }}</td>
                     {% else %}
