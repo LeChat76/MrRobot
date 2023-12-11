@@ -1,0 +1,26 @@
+<!-- templates/base.html -->
+
+{% load static %}
+
+<head>
+    <title>Gestion réseau</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">   
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+    <div id="header">
+        <img src="{% static 'images/fond_chat.png' %}" alt="Logo LitReview">
+        <h1>Gestion réseau</h1>
+    </div>
+    <div id="footer">
+        <p>&copy; 2023 LeChat76. Tous droits réservés.</p>
+    </div>
+    {% block content %}
+    {% endblock content %}
+</body>
+
+
+
+
+
+

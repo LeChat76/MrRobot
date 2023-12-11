@@ -1,3 +1,3 @@
-from .project import Project
-from .skill import Skill
-from .technology import Technology
+from .project_model import Project
+from .skill_model import Skill
+from .technology_model import Technology

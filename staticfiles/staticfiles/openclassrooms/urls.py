@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import project_list
+from .views import OpenclassroomsProjectList
 # from django.http import HttpResponse
 
 # def no_favicon(request):
@@ -9,6 +9,6 @@ from .views import project_list
 
 app_name = 'projects'
 urlpatterns = [
-    path('', project_list, name='project_list'),
+    path('', OpenclassroomsProjectList, name='OpenclassroomsProjectList'),
     # path('favicon.ico', no_favicon),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
