@@ -1,28 +1,25 @@
 <!-- authentication/templates/login.html -->
 
-{% extends 'base.html' %}
-
 {% load static %}
 
-{% block content %}
-<html lang="fr">
 <head>
-    <title>Authentification</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/authentication.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 </head>
 
 <body>
-      <div id="login">
-        <h1>Connexion</h1>
-        <form method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="submit" value="Se connecter">
-            <p class="message">{{ message }}</p>
-        </form>
-    </div>
+<header>
+    <img src="{% static 'images/fond_chat.png' %}" alt="Logo">
+    <h1>Mr Robot</h1>
+</header>
+<div id="login">
+    <h2>Connexion</h1>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Se connecter">
+        <p class="message">{{ message }}</p>
+    </form>
+</div>
+<footer>&copy; 2023 Monsieur Robot. Tous droits réservés.</footer>
 </body>
-</html>
-{% endblock %}

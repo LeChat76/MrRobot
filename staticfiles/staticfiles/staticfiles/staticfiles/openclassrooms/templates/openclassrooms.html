@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Le Chat!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/openclassrooms.css' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Liste des projets de ma formation.<br>Developpeur Python chez Openclassrooms</h1>
+    </header>
+    {% for project in projects %}
+    <div class="project-container" data-aos="zoom-in-up" data-aos-easing="ease-out-cubic" data-aos-duration="1000">
+        <h2>{{ project.title }}</h2>
+        <div class="image-description">
+            <div class="image">
+                <img src="{% static project.image_path %}" alt="Project Image">
+            </div>
+            <div class="description">
+                <p>{{ project.description|linebreaks }}</p>
+            </div>
+        </div>
+        <div class="url_github-duration">
+            {% if project.url_github %}
+                <p>Lien vers le repository GitHub : <a href="{{ project.url_github }}" target="_blank">{{ project.url_github }}</a></p>
+            {% endif %}
+            <p>Durée du projet : {{ project.project_duration }}</p>
+        </div>
+        <div class="skills-technologies">
+            <div class="skills">
+                <h3>Compétences développées:</h3>
+                <ul>
+                    {% for skill in project.skill.all %}
+                        <li>{{ skill.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="technologies">
+                <h3>Outils utilisés:</h3>
+                <ul>
+                    {% for technology in project.technology.all %}
+                        <li>{{ technology.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+<footer class="site-footer">
+    <p>Ce site a été créé avec Django par Cedric Delauney. <span class="copyright">&copy; 2023</span></p>
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="{% static 'js/openclassrooms.js' %}"></script>
+</body>
+</html>

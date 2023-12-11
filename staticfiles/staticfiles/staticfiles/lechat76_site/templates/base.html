@@ -1,26 +1,41 @@
-<!-- templates/base.html -->
+<!-- lechat76_site/templates/base.html -->
 
 {% load static %}
 
+<!DOCTYPE html>
+
 <head>
-    <title>Gestion réseau</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">   
+    <html lang="fr">
+    <title>Mr Robot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 </head>
+
 <body>
-    <div id="header">
-        <img src="{% static 'images/fond_chat.png' %}" alt="Logo LitReview">
-        <h1>Gestion réseau</h1>
+
+<header>
+    <div id="header-main">
+        <div id="left-section">
+            <img src="{% static 'images/fond_chat.png' %}" alt="Logo Mr Robot" ondragstart="return false;">
+            <h1>Mr Robot</h1>
+        </div>
+        <div id="right-section">
+            <a href="{% url 'openclassrooms:OpenclassroomsProjectList' %}" ondragstart="return false;">Openclassrooms</a>
+            <a href="{% url 'network:vlan_view' %}" ondragstart="return false;">Network</a>
+        </div>
     </div>
-    <div id="footer">
-        <p>&copy; 2023 LeChat76. Tous droits réservés.</p>
-    </div>
-    {% block content %}
-    {% endblock content %}
+</header>
+
+{% if request.user.is_authenticated %}
+    <p>Vous êtes connecté en tant que "{{ request.user|capfirst }}". <a href="{% url 'logout_user' %}">Déconnexion?</a></p>
+{% endif %}
+
+
+{% block content %}
+{% endblock content %}
+
+<footer>&copy; 2023 Monsieur Robot. Tous droits réservés.</footer>
+
 </body>
-
-
-
-
-
-

@@ -1,0 +1,104 @@
+/* static/css/vlan.css */
+
+th, td {
+    border: 1px solid rgb(196, 194, 194);
+    padding: 8px;
+    border-radius: 10px;
+    max-width: 320px;
+}
+
+input {
+    width: 300px;
+    border-radius: 5px;
+}
+
+.vlan-id input {
+    width: 70px;
+}
+
+.vlan-description textarea {
+    height: 50px;
+    vertical-align: top;
+    border-radius: 5px;
+    resize: none;
+}
+
+.add-btn {
+    margin-left: 280px;
+    margin-top: 10px;
+    width: 150px;
+    background-color: rgb(11, 201, 11);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-btn:hover {
+    background-color: green;
+}
+
+hr {
+    /* petit trait pour faire joli  ;-) */
+    border: 1px solid #adadad;
+    width: 600px;
+    margin: 0;
+    position: absolute;
+    top: 350px;
+}
+
+h3 {
+    position: absolute;
+    top: 355px;
+}
+
+/* tableau des vlans existants */
+.vlan-table {
+    width: 600px;
+    border: 2px solid rgb(88, 88, 88);
+    border-radius: 10px;
+    position: absolute;
+    top: 410px;
+    padding: 5px;
+}
+
+th.vlan-id-title {
+    width: 30px;
+}
+
+th.vlan-name-title {
+    width: 150px;
+}
+
+th.vlan-description-title {
+    width: 320px;
+    overflow: hidden;
+}
+
+.vlan-table td {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+td.vlan-id-title {
+    text-align: center;
+}
+
+td.vlan-id-value {
+    text-align: center;
+}
+
+.delete-btn {
+    background-color: #ff5757;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000; /* Rouge légèrement plus sombre au survol */
+}
+

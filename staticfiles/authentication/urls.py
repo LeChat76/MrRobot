@@ -1,7 +1,9 @@
 from django.urls import path
-import authentication.views as authentication
+import authentication.views
+
 
 app_name = 'authentication'
+
 urlpatterns = [
-    path('login/', authentication.login_page, name='login_view'),
+    path('login/', authentication.views.login_page, name='login_view'),
 ]

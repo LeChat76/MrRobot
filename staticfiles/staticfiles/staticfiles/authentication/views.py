@@ -1,6 +1,7 @@
 # authentication/views.py
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
+from lechat76_site.views import main
 
 from .forms import authentication_form as authentication
 
@@ -25,7 +26,3 @@ def login_page(request):
         'login.html',
         context={'form': form, 'message': message}
     )
-
-def logout_user(request):
-    logout(request)
-    return redirect('login')

@@ -132,6 +132,14 @@ header {
     .technologies {
         width: 100%; /* Les éléments prendront toute la largeur */
     }
+
+    .skills {
+        margin-right: 5px;
+    }
+
+    .technologies {
+        margin-left: 5px;
+    }
     .site-footer {
         margin: 10px;
     }

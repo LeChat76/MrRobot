@@ -1,78 +1,77 @@
+<!-- network/templates/vlan_form.html -->
+
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Vlan</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/vlan.css' %}">
-</head>
-<body>
 
-    <h2>Ajouter un Vlan</h2>
+{% block content %}
 
-    <form method="post" action="{% url 'network:vlan_view' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/vlan.css' %}">
 
-        {% csrf_token %}
+<h2>Ajouter un Vlan</h2>
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <td class="vlan-id">{{ form.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td class="vlan-name">{{ form.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td class="vlan-description">{{ form.description }}</td>
-            </tr>
-        </table>
+<form method="post" action="{% url 'network:vlan_view' %}">
 
-        <button class="add-btn" type="submit">Ajouter</button>
+    {% csrf_token %}
 
-    {% if form.errors %}
-        <p class="error-message">{{ form.errors }}</p>
-    {% endif %}
-
-    </form>
-
-    {% if existing_vlans %}
-    <hr/>
-    <h3>VLAN existants</h3>
-    <table class="vlan-table">
-        <thead>
-            <tr>
-                <th class="vlan-id-title">ID</th>
-                <th class="vlan-name-title">Nom</th>
-                <th class="vlan-description-title">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for vlan in existing_vlans %}
-                <tr>
-                    <td class="vlan-id-value" >{{ vlan.id }}</td>
-                    {% if vlan.name %}
-                        <td>{{ vlan.name }}</td>
-                    {% else %}
-                        <td></td>
-                    {% endif %}
-                    {% if vlan.description %}
-                    <td>{{ vlan.description }}</td>
-                    {% else %}
-                        <td></td>
-                    {% endif %}
-                    <td>
-                        <form action="{% url 'network:vlan_delete_view' vlan.id %}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce VLAN ? Cette action supprimera le réseau associé et est irreversible!');">
-                            {% csrf_token %}
-                            <button class="delete-btn" type="submit">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td class="vlan-id">{{ form.vlan_id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td class="vlan-name">{{ form.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td class="vlan-description">{{ form.description }}</td>
+        </tr>
     </table>
-    {% endif %}
-</body>
-</html>
+
+    <button class="add-btn" type="submit">Ajouter</button>
+
+{% if form.errors %}
+    <p class="error-message">{{ form.errors }}</p>
+{% endif %}
+
+</form>
+
+{% if existing_vlans %}
+<hr/>
+<h3>VLAN existants</h3>
+<table class="vlan-table">
+    <thead>
+        <tr>
+            <th class="vlan-id-title">ID</th>
+            <th class="vlan-name-title">Nom</th>
+            <th class="vlan-description-title">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vlan in existing_vlans %}
+            <tr>
+                <td class="vlan-id-value" >{{ vlan.vlan_id }}</td>
+                {% if vlan.name %}
+                    <td>{{ vlan.name }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if vlan.description %}
+                <td>{{ vlan.description }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                <td>
+                    <form action="{% url 'network:vlan_delete_view' vlan.id %}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce VLAN ? Cette action supprimera le réseau associé et est irreversible!');">
+                        {% csrf_token %}
+                        <button class="delete-btn" type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

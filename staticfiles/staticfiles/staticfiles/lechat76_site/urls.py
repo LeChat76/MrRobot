@@ -16,12 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import main, logout_user
+from openclassrooms.views import OpenclassroomsProjectList
 
 
 app_name = 'lechat76_site'
+
 urlpatterns = [
+    path('', OpenclassroomsProjectList, name='OpenclassroomsProjectList'),
     path('admin/', admin.site.urls),
-    path('', include('openclassrooms.urls')),
-    path('', include('network.urls')),
-    path('', include('authentication.urls'))
+    path('main/', main, name='main'),
+    path('logout_user/', logout_user, name='logout_user'),
+    path('openclassrooms/', include('openclassrooms.urls')),
+    path('network/', include('network.urls')),
+    path('authentication/', include('authentication.urls')),
 ]

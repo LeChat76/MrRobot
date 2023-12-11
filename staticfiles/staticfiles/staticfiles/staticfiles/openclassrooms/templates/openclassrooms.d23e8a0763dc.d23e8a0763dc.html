@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects List</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/openclassrooms.css' %}">
+</head>
+<body>
+    <h1>Liste des projets de ma formation</h1>
+    {% for project in projects %}
+    <div class="project-container">
+        <h2>{{ project.title }}</h2>
+        <div class="image-description">
+            <div class="image">
+                <img src="{% static project.image_path %}" alt="Project Image">
+            </div>
+            <div class="description">
+                <p>{{ project.description|linebreaks }}</p>
+            </div>
+        </div>
+        <div class="url_github-duration">
+            {% if project.url_github %}
+                <p>Lien vers le repository GitHub : <a href="{{ project.url_github }}" target="_blank">{{ project.url_github }}</a></p>
+            {% endif %}
+            <p>Durée du projet : {{ project.project_duration }}</p>
+        </div>
+        <div class="skills-technologies">
+            <div class="skills">
+                <h3>Compétences utilisées:</h3>
+                <ul>
+                    {% for skill in project.skill.all %}
+                        <li>{{ skill.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="technologies">
+                <h3>Outils utilisés:</h3>
+                <ul>
+                    {% for technology in project.technology.all %}
+                        <li>{{ technology.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+<footer class="site-footer">
+    <p>Ce site a été créé avec Django par Cedric Delauney. <span class="copyright">&copy; 2023</span></p>
+</footer>
+</html>
