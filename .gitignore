@@ -397,6 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Projet8OC
-venv
-staticfiles
+# Mr Robot
+/venv/
+/staticfiles/

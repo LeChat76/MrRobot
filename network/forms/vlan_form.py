@@ -1,6 +1,7 @@
 from django import forms
 from ..models import Vlan
 
+
 class VlanForm(forms.ModelForm):
     vlan_id = forms.IntegerField(min_value=2, max_value=4095, required=False)
     name = forms.CharField(max_length=32, required=False)

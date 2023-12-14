@@ -1,0 +1,15 @@
+.add-btn {
+    position: absolute;
+    left: 240px;
+    top: 300px;
+    margin-left: 280px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 150px;
+    background-color: rgb(11, 201, 11);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}

@@ -1,5 +1,8 @@
 from django.contrib import admin
 from .models import Vlan, Network, Address
+from django.forms import TextInput
+from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class VlanAdmin(admin.ModelAdmin):
@@ -12,7 +15,11 @@ class NetworkAdmin(admin.ModelAdmin):
     """
     used to add column about network in django console admin
     """
-    list_display = ('vlan', 'network_address', 'network_broadcast', 'network_mask', 'description')
+    list_display = ('mask', 'nb_hosts', 'CIDR')
+
+    formfield_overrides = {
+        models.IntegerField: {'widget': TextInput(attrs={'type': 'number', 'min': '1', 'max': '32'})},
+    }
 
 class AddressAdmin(admin.ModelAdmin):
     """

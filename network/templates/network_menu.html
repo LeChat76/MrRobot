@@ -1,0 +1,12 @@
+<!-- network/templates/network_menu.html -->
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<p><a href="{% url 'network:vlan_view' %}">Gestion des VLANs</a></p>
+<p><a href="{% url 'network:network_view' %}">Gestion des réseaux</a></p>
+
+{% endblock %}

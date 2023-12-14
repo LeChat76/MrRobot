@@ -1,0 +1,31 @@
+<!-- network/templates/network_form.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/network.css' %}">
+
+<h2>Ajouter un réseau</h2>
+
+
+<form method="post" action="{% url 'network:network_view' %}">
+    {% csrf_token %}
+
+    <label for="first_tree_bytes">Trois premiers octets:</label>
+    <input type="text" id ="first_tree_bytes" name="first_tree_bytes" required maxlength="15" placeholder="Ex. 192.168.0">
+    <select name="networks_masks" disabled id="networks_masks">
+        <option value="" disabled selected>-- Choisissez un masque --</option>
+        {% for network in networks_masks %}
+        <option value="{{ network.mask }}" data-mask="{{ network.mask }}" data-nb-hosts="{{ network.nb_hosts }}">
+            /{{ network.CIDR }} : {{ network.mask }}
+        </option>
+        {% endfor %}
+    </select>
+    <p id="nb_hosts_display">Nombre d'hôtes disponibles :</p>
+    
+    <p><button class="add-btn" type="submit">Ajouter</button></p>
+</form>
+
+<script src="{% static 'js/network.js' %}"></script>
+
+{% endblock %}
