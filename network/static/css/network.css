@@ -1,15 +1,43 @@
-.add-btn {
-    position: absolute;
-    left: 240px;
-    top: 300px;
-    margin-left: 280px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 150px;
+#addBtn {
+    display: none;
+    margin-left: 350px;
+    width: 145px;
     background-color: rgb(11, 201, 11);
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+#addBtn:hover {
+    background-color: green;
+}
+
+hr {
+    /* petit trait pour faire joli  ;-) */
+    display: none;
+    border: 1px solid #adadad;
+    width: 490px;
+    margin: 0;
+}
+
+#networkTitle {
+    display: none;
+}
+
+#radioButtonContainer {
+    display: none;
+    width: 300px;
+    border: 2px solid rgb(88, 88, 88);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#vlanTitle {
+    display: none;
+}
+
+#vlansList {
+    display: none;
 }

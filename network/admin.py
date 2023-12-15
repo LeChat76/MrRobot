@@ -25,7 +25,7 @@ class AddressAdmin(admin.ModelAdmin):
     """
     used to add column about address in django console admin
     """
-    list_display = ('ip', 'network', 'description',)
+    list_display = ('ip', 'description',)
 
 """
 tables to include in django administration page

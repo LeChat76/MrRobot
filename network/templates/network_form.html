@@ -1,12 +1,14 @@
 <!-- network/templates/network_form.html -->
+
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/network.css' %}">
 
 <h2>Ajouter un réseau</h2>
-
 
 <form method="post" action="{% url 'network:network_view' %}">
     {% csrf_token %}
@@ -21,9 +23,28 @@
         </option>
         {% endfor %}
     </select>
-    <p id="nb_hosts_display">Nombre d'hôtes disponibles :</p>
+
+    <p id="nb_hosts_display"></p>
     
-    <p><button class="add-btn" type="submit">Ajouter</button></p>
+    <hr class="joliTrait">
+
+    <p id="networkTitle">Liste des reséaux disponibles :</p>
+
+    <div id="radioButtonContainer"></div>
+
+    <p><hr class="joliTrait"></p>
+    
+    <p id="vlanTitle">Selection du vlan à associer à ce réseau :</p>
+    <select name="vlans" id="vlansList">
+        <option value="">-- Choisissez un VLAN --</option>
+        {% for vlan in availableVlans %}
+            <option value="{{ vlan.vlan_id }}" data-vlanId="{{ vlan.vlan_id }}">
+                {{ vlan.vlan_id }} - {{ vlan.name }}
+            </option>
+        {% endfor %}
+    </select>
+    
+    <p><button id="addBtn" type="submit">Ajouter</button></p>
 </form>
 
 <script src="{% static 'js/network.js' %}"></script>

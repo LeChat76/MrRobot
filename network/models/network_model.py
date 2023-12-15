@@ -8,8 +8,7 @@ class Network(models.Model):
     """
     describe networks
     """
-    id = models.AutoField(primary_key=True,unique=True)
-    vlan_id = models.ForeignKey(Vlan, on_delete=models.CASCADE, blank=True, null=True)
+    vlan = models.ForeignKey(Vlan, on_delete=models.CASCADE, blank=True, null=True)
     mask = models.CharField(max_length=15, validators=[validate_ipv4_address])
     CIDR = models.IntegerField(default=0, validators=[MaxValueValidator(32)], unique=True)
     nb_hosts = models.IntegerField(default=0, unique=True)

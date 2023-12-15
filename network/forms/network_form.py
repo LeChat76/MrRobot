@@ -1,8 +1,8 @@
 from django import forms
-from ..models import Network
+from ..models import Network, Vlan
 
 
 class NetworkForm(forms.ModelForm):
     class Meta:
         model = Network
-        fields = ['vlan_id', 'nb_hosts', 'mask', 'CIDR']
+        fields = ['vlan', 'nb_hosts', 'mask', 'CIDR']

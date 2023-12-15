@@ -7,14 +7,6 @@ class CustomUser(AbstractUser):
     """
     Customize user table
     """
-    age = models.IntegerField(
-        null=True,
-        blank=True,
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(130)
-            ]
-    )
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
 
     def __str__(self):

@@ -18,7 +18,7 @@ def login_page(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect('network:vlan_view')
+                return redirect('network:menu_view')
             else:
                 message = 'Identifiants invalides.'
     return render(

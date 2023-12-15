@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
 from .forms import VlanForm, NetworkForm
-from .models import Vlan, Network
+from .models import Vlan, Network, Address
 
 @login_required
 def vlan_view(request):
@@ -57,4 +56,10 @@ def network_view(request):
     form = NetworkForm()
     template_name = 'network_form.html'
     networks_masks = Network.objects.all().order_by('mask')
-    return render(request, template_name, {'form': form, 'networks_masks': networks_masks})
+    # selection des vlans non associés à un reseau et appartenant a l'utilisateur connecté
+    availableVlans = Vlan.objects.filter(
+        address__isnull=True,
+        user=request.user
+    ).order_by('vlan_id')
+    # print("Available VLANS : ", availableVlans)
+    return render(request, template_name, {'form': form, 'networks_masks': networks_masks, 'availableVlans': availableVlans},)

@@ -7,6 +7,6 @@ class CustomUserAdmin(UserAdmin):
     """
     to  modify display of the user sheet in the django admin console
     """
-    list_display = ('username', 'email', 'age')
+    list_display = ('username', 'email', 'id')
 
 admin.site.register(CustomUser, CustomUserAdmin)
