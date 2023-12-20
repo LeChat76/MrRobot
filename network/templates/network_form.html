@@ -10,11 +10,18 @@
 
 <h2>Ajouter un réseau</h2>
 
+{% autoescape off %}
+{% if message %}
+    <div id="vlanAvailability">{{ message }}</div>
+    <p></p>
+{% endif %}
+{% endautoescape %}
+
 <form method="post" action="{% url 'network:network_view' %}">
     {% csrf_token %}
 
-    <label for="first_tree_bytes">Trois premiers octets:</label>
-    <input type="text" id ="first_tree_bytes" name="first_tree_bytes" required maxlength="15" placeholder="Ex. 192.168.0">
+    <label for="first_three_bytes" id="first_three_bytes_label">Trois premiers octets:</label>
+    <input type="text" id ="first_three_bytes" name="first_three_bytes" required maxlength="15" placeholder="Ex. 192.168.0">
     <select name="networks_masks" disabled id="networks_masks">
         <option value="" disabled selected>-- Choisissez un masque --</option>
         {% for network in networks_masks %}
@@ -25,6 +32,9 @@
     </select>
 
     <p id="nb_hosts_display"></p>
+    <input type="hidden" id="nb_hosts_value" name="nb_hosts_value">
+
+    <div id="noNetworkMessage" style="display: none;">Des IP sont déjà allouées sur le ou les réseau(x) sélectionné(s).</div>
     
     <hr class="joliTrait">
 
@@ -48,5 +58,6 @@
 </form>
 
 <script src="{% static 'js/network.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 {% endblock %}
