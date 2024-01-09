@@ -15,13 +15,22 @@ async function afficherAdresses(vlan_id) {
             tableBody.innerHTML = "";
 
             // Ajout des adresses IP à la table
-            data.forEach(address => {
+            data.forEach((address, index) => {
                 var row = document.createElement("tr");
-                row.innerHTML = `<td class="address-ip-value">${address.ip}</td>
-                                    <td>${address.hostname || ''}</td>
-                                    <td>${address.description || ''}</td>`;
+                row.innerHTML = `<td class="address-ip-value" style="pointer-events: none; user-select: none;">${address.ip}</td>`
+                if (index !== 0 && index !== data.length - 1) {
+                    row.innerHTML += `<td contenteditable="true">${address.hostname}</td>
+                                        <td contenteditable="true">${address.description}</td>   
+                                        <td><form action="{% url 'network:modify_address' ${address.ip} %}" method="post">
+                                        <button class="modify-btn" type="submit">Modifier</button>
+                                        </form></td>`;
+                } else {
+                    row.innerHTML += `<td style="pointer-events: none; user-select: none;">${address.hostname}</td>
+                                        <td style="pointer-events: none; user-select: none;">${address.description}</td>` 
+                };
                 tableBody.appendChild(row);
             });
+            
         })
         .catch(error => console.error('Erreur lors de la récupération des adresses IP:', error));
 }

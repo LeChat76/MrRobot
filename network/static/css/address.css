@@ -2,13 +2,13 @@ hr {
     /* petit trait pour faire joli  ;-) */
     display: none;
     border: 1px solid #adadad;
-    width: 490px;
+    width: 600px;
     margin: 0;
 }
 
 .address-table {
     display: none;
-    width: 490px;
+    width: 600px;
     border: 2px solid rgb(88, 88, 88);
     border-radius: 10px;
     top: 510px;
@@ -28,4 +28,14 @@ th.address-hostname-title {
 
 th.address-description-title {
     width: 220px;
+}
+
+.modify-btn {
+    width: auto;
+    background-color: rgb(11, 201, 11);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
 }

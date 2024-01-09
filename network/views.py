@@ -78,21 +78,26 @@ def network_view(request):
         first_byte_network_range = request.POST.get('networkRange')
         selected_vlan = Vlan.objects.get(vlan_id=request.POST.get('vlans'), user=request.user)
 
-        address = Address()
-
         # premiere adresse : adresse de reseau
+        address = Address()
+        address.user = request.user
+        address.vlan = selected_vlan
         address.ip = first_three_bytes_value + "." + str(int(first_byte_network_range))
         address.description = "adresse de reseau"
-        address.vlan = selected_vlan
-        address.user = request.user
         address.save()
         
         address.description = ""
         for i in range (int(first_byte_network_range) + 1, int(first_byte_network_range) + int(nb_hosts) - 1):
+            address = Address()
+            address.user = request.user
+            address.vlan = selected_vlan
             address.ip = first_three_bytes_value + "." + str(i)
             address.save()
         
         # derniere adresse : adresse de diffusion
+        address = Address()
+        address.user = request.user
+        address.vlan = selected_vlan
         address.ip = first_three_bytes_value + "." + str(int(first_byte_network_range) + int(nb_hosts) - 1)
         address.description = "adresse de diffusion"
         address.save()
@@ -146,15 +151,14 @@ def check_ip_in_db(request):
     return JsonResponse({'ip_exists': ip_exists})
 
 def get_network_addresses(request):
+    # renvoi les adresses IP associées à un vlan
+
     selected_vlan_id = request.GET.get('vlan_id')
-    # print("SELECTED VLAN ID :", selected_vlan_id)
-
     network_addresses = Address.objects.filter(vlan__vlan_id=selected_vlan_id, user=request.user)
-    # print("ADDRESSES :", network_addresses)
 
-    # Structurez les données à renvoyer en JSON
     data = [{'ip': address.ip, 'hostname': address.hostname, 'description': address.description} for address in network_addresses]
 
-    # print('JSON_RESPONSE :', data)
-
     return JsonResponse(data, safe=False)
+
+def modify_address(request):
+    pass

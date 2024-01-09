@@ -31,6 +31,7 @@
 </form>
 
 <form method="POST" action="{% url 'network:address_view' %}">
+    {% csrf_token %} 
     <table class="address-table">
         <thead>
             <tr>
