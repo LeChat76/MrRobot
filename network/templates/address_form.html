@@ -1,0 +1,48 @@
+<!-- network/templates/address_form.html -->
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/address.css' %}">
+
+<h2>Gestion des adresses</h2>
+
+{% autoescape off %}
+{% if message %}
+    <div id="vlanAvailability">{{ message }}</div>
+    <p></p>
+{% endif %}
+{% endautoescape %}
+<form method="GET">
+    <p id="vlanTitle">Sélectionnez le VLAN du réseau :</p>
+    <select name="vlans" id="vlansList">
+        <option value="">-- Choisissez un VLAN --</option>
+        {% for vlan in availableVlans %}
+            <option value="{{ vlan.vlan_id }}">
+                {{ vlan.vlan_id }} - {{ vlan.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <p><hr class="joliTrait"></p>
+</form>
+
+<form method="POST" action="{% url 'network:address_view' %}">
+    <table class="address-table">
+        <thead>
+            <tr>
+                <th class="address-ip-title" >IP</th>
+                <th class="address-hostname-title">Nom d'hote</th>
+                <th class="address-description-title">Description</th>
+            </tr>
+        </thead>
+        <tbody id = "networkAddressesTableBody"></tbody>
+    </table>
+</form>
+
+<script src="{% static 'js/address.js' %}"></script>
+
+{% endblock %}

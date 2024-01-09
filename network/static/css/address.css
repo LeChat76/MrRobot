@@ -1,0 +1,31 @@
+hr {
+    /* petit trait pour faire joli  ;-) */
+    display: none;
+    border: 1px solid #adadad;
+    width: 490px;
+    margin: 0;
+}
+
+.address-table {
+    display: none;
+    width: 490px;
+    border: 2px solid rgb(88, 88, 88);
+    border-radius: 10px;
+    top: 510px;
+    padding: 5px;
+}
+
+th, td {
+    border: 1px solid rgb(196, 194, 194);
+    padding: 8px;
+    border-radius: 10px;
+    max-width: 320px;
+}
+
+th.address-hostname-title {
+    width: 150px;
+}
+
+th.address-description-title {
+    width: 220px;
+}

@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-from .forms import VlanForm, NetworkForm
+from .forms import VlanForm, AddressForm
 from .models import Vlan, Network, Address
 
 @login_required
@@ -56,7 +56,6 @@ def menu_view(request):
 def network_view(request):
     # view de gestion de la page network
     template_name = 'network_form.html'
-    form = NetworkForm()
 
     if request.method == 'GET':
         networks_masks = Network.objects.all().order_by('mask')
@@ -69,10 +68,9 @@ def network_view(request):
         # Vérifier si availableVlans est vide
         if not availableVlans:
             message = "Aucun VLAN disponible.<br>Allez en créer d'autres ou supprimez des réseaux associés."
-            print("TOP")
         else:
             message = None
-        return render(request, template_name, {'form': form, 'networks_masks': networks_masks, 'availableVlans': availableVlans, 'message': message})
+        return render(request, template_name, {'networks_masks': networks_masks, 'availableVlans': availableVlans, 'message': message})
     
     elif request.method == 'POST':
         first_three_bytes_value = request.POST.get('first_three_bytes')
@@ -103,6 +101,34 @@ def network_view(request):
             
     return render(request, template_name)
 
+@login_required
+def address_view(request):
+    template_name = 'address_form.html'
+    form = AddressForm()
+    network_addresses = []
+    message = None
+
+    # Sélection des vlans associés à un réseau et appartenant à l'utilisateur connecté
+    availableVlans = Vlan.objects.filter(
+        address__isnull=False,
+        user=request.user
+    ).order_by('vlan_id').distinct()
+
+    if request.method == 'GET':
+        # Obtenir le VLAN sélectionné (s'il existe)
+        selected_vlan_id = request.GET.get('vlans')
+
+        if selected_vlan_id:
+            # Obtenir les adresses réseau associées au VLAN sélectionné
+            network_addresses = Address.objects.filter(vlan__vlan_id=selected_vlan_id)
+
+    # Vérifier si availableVlans est vide
+    if not availableVlans:
+        if request.method == 'GET':
+            message = "Aucun VLAN disponible. Allez en créer d'autres ou supprimez des réseaux associés."
+
+    return render(request, template_name, {'form': form, 'availableVlans': availableVlans, 'network_addresses': network_addresses, 'message': message})
+
 def check_ip_in_db(request):
     first_three_bytes = request.GET.get('firstThreeBytes')
     network_first_byte = request.GET.get('networkFirstByte')
@@ -118,3 +144,17 @@ def check_ip_in_db(request):
             break
 
     return JsonResponse({'ip_exists': ip_exists})
+
+def get_network_addresses(request):
+    selected_vlan_id = request.GET.get('vlan_id')
+    # print("SELECTED VLAN ID :", selected_vlan_id)
+
+    network_addresses = Address.objects.filter(vlan__vlan_id=selected_vlan_id, user=request.user)
+    # print("ADDRESSES :", network_addresses)
+
+    # Structurez les données à renvoyer en JSON
+    data = [{'ip': address.ip, 'hostname': address.hostname, 'description': address.description} for address in network_addresses]
+
+    # print('JSON_RESPONSE :', data)
+
+    return JsonResponse(data, safe=False)

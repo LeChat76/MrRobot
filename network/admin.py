@@ -25,7 +25,12 @@ class AddressAdmin(admin.ModelAdmin):
     """
     used to add column about address in django console admin
     """
-    list_display = ('ip', 'description',)
+    list_display = ('ip', 'get_vlan_id', 'hostname', 'description',)
+
+    def get_vlan_id(self, obj):
+        return obj.vlan.id
+
+    get_vlan_id.short_description = 'VLAN ID'
 
 """
 tables to include in django administration page

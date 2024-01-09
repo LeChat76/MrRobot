@@ -61,10 +61,7 @@ async function selectRange() {
     while (current4thByte <= 254) {
         let networkRangeAvailable = await checkIpInDb(firstThreeBytes, networkFirstByte, networkLastByte)
         console.log("networkRangeAvailable :", networkRangeAvailable);
-        // if (!checkIpInDb(firstThreeBytes, networkFirstByte, networkLastByte)) {
         if (!networkRangeAvailable) {
-            // console.log("networkFirstByte :", networkFirstByte);
-            // console.log("networkLastByte :", networkLastByte);
             let networkRange = firstThreeBytes + "." + String(current4thByte) + " => " + firstThreeBytes + "." + String(current4thByte + nbHostsValue- 1);
             networkList.push(networkRange);
             networkFirstByteList.push(current4thByte);
