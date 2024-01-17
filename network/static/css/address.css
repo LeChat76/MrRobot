@@ -6,7 +6,7 @@ hr {
     margin: 0;
 }
 
-.address-table {
+#address-table {
     display: none;
     width: 600px;
     border: 2px solid rgb(88, 88, 88);
@@ -30,12 +30,14 @@ th.address-description-title {
     width: 220px;
 }
 
-.modify-btn {
-    width: auto;
-    background-color: rgb(11, 201, 11);
+button {
+    width: 100px;
+    height: 35px;
+    background-color: rgb(255, 87, 51);
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: background-color 1.25s, color 1.25s;
 }

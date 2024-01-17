@@ -28,9 +28,9 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ('ip', 'get_vlan_id', 'hostname', 'description',)
 
     def get_vlan_id(self, obj):
-        return obj.vlan.id
+        return obj.vlan.vlan_id
 
-    get_vlan_id.short_description = 'VLAN ID'
+    get_vlan_id.short_description = 'VLAN number'
 
 """
 tables to include in django administration page
