@@ -1,13 +1,13 @@
 hr {
     /* petit trait pour faire joli  ;-) */
-    display: none;
+    /* display: none; */
     border: 1px solid #adadad;
     width: 600px;
     margin: 0;
 }
 
 #address-table {
-    display: none;
+    /* display: none; */
     width: 600px;
     border: 2px solid rgb(88, 88, 88);
     border-radius: 10px;

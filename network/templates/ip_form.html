@@ -1,0 +1,59 @@
+<!-- network/templates/ip_form.html -->
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/ip.css' %}">
+
+<h2>Donne moi une IP!</h2>
+
+{% autoescape off %}
+{% if message %}
+    <div id="vlanAvailability">{{ message }}</div>
+    <p></p>
+{% endif %}
+{% endautoescape %}
+
+<p id="vlanTitle">Sélectionnez le VLAN:</p>
+<select name="vlans" id="vlansList">
+    <option value="">-- Choisissez un VLAN --</option>
+    {% for vlan in availableVlans %}
+        <option value="{{ vlan.vlan_id }}">
+            {{ vlan.vlan_id }} - {{ vlan.name }}
+        </option>
+    {% endfor %}
+</select>
+
+<p><hr id="joliTrait" style="display: none;"></p>
+
+<p id="ipDispo" style="display: none;">IP disponible(s) pour ce vlan :</p>
+
+<table id="address-table">
+    <tbody id = "freeIpAddressesTableBody"></tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal" id="addressModal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div>
+            <label for="hostname">Hostname:</label>
+            <input type="text" id="hostname" name="hostname">
+        </div>
+        <p></p>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description">
+        </div>
+        <p></p>
+        <button id="submitBtn">Submit</button>
+    </div>
+</div>
+
+
+<script src="{% static 'js/ip.js' %}"></script>
+
+{% endblock %}

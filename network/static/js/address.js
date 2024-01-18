@@ -10,7 +10,7 @@ async function afficherAdresses(vlan_id) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log("DATA :", data)
+            // console.log("DATA :", data)
             // Supprimer contenu de la table
             tableBody.innerHTML = "";
 
@@ -28,7 +28,6 @@ async function afficherAdresses(vlan_id) {
                 };
                 tableBody.appendChild(row);
             });
-            
         })
         .catch(error => console.error('Erreur lors de la récupération des adresses IP:', error));
 }
@@ -85,7 +84,7 @@ document.getElementById("vlansList").addEventListener("change", function () {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+// document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("address-table").addEventListener("click", function(event) {
         // vérification si c'est le bouton "modifier" qui est cliqué parmi tous les éléments du tableau
         if (event.target.id && event.target.id.startsWith("modify-btn_")) {
@@ -96,6 +95,6 @@ document.addEventListener("DOMContentLoaded", function() {
             modifyAddress(addressId, hostname, description);
         }
     });
-});
+// });
 
 

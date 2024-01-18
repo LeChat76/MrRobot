@@ -27,11 +27,11 @@
         {% endfor %}
     </select>
 
-    <p><hr class="joliTrait"></p>
+    <p><hr class="joliTrait" style="display: none;"></p>
 </form>
 
 <form method="POST" action="{% url 'network:address_view' %}">
-    <table id="address-table">
+    <table id="address-table" style="display: none;">
         {% csrf_token %}
         <thead>
             <tr>

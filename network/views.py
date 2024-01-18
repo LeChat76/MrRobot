@@ -127,7 +127,7 @@ def address_view(request):
             # Obtenir les adresses réseau associées au VLAN sélectionné
             network_addresses = Address.objects.filter(vlan__vlan_id=selected_vlan_id)
 
-    # Vérifier si availableVlans est vide
+    # verification si aucun vlan disponible
     if not availableVlans:
         if request.method == 'GET':
             message = "Aucun VLAN disponible. Allez en créer d'autres ou supprimez des réseaux associés."
@@ -136,6 +136,7 @@ def address_view(request):
 
 @login_required
 def check_ip_in_db(request):
+    # renvoi False si le range testé contient une IP présente dans la DB
     first_three_bytes = request.GET.get('firstThreeBytes')
     network_first_byte = request.GET.get('networkFirstByte')
     network_last_byte = request.GET.get('networkLastByte')
@@ -178,5 +179,32 @@ def modify_address(request):
 
 @login_required
 def donne_ip(request):
-    # donne la prochaine IP disponible pour un vlan donné
-    pass
+    template_name = 'ip_form.html'
+    # form = AddressForm()
+    # network_addresses = []
+    message = None
+
+    # Sélection des vlans associés à un réseau et appartenant à l'utilisateur connecté
+    availableVlans = Vlan.objects.filter(
+        address__isnull=False,
+        user=request.user
+    ).order_by('vlan_id').distinct()
+
+    # verification si aucun vlan disponible
+    if not availableVlans:
+        # if request.method == 'GET':
+            message = "Aucun VLAN disponible. Allez en créer d'autres ou supprimez des réseaux associés."
+
+    return render(request, template_name, {'availableVlans': availableVlans, 'message': message})
+
+@login_required
+def get_free_ip_addresses(request):
+    # renvoi les adresses IP non affectées par rapport à un vlan donné    
+    selected_vlan_id = request.GET.get('vlan_id')
+    network_addresses = Address.objects.filter(vlan__vlan_id=selected_vlan_id, user=request.user, hostname='', description='')
+
+    data = [{'id': address.id, 'ip': address.ip} for address in network_addresses]
+
+    # print("DATA", data)
+
+    return JsonResponse(data, safe=False)

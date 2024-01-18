@@ -29,7 +29,7 @@
 </header>
 
 {% if request.user.is_authenticated %}
-    <p>Vous êtes connecté en tant que "{{ request.user|capfirst }}". <a href="{% url 'logout_user' %}">Déconnexion?</a></p>
+    <p>Vous êtes connecté en tant que "{{ request.user }}". <a href="{% url 'logout_user' %}">Déconnexion?</a></p>
 {% endif %}
 
 

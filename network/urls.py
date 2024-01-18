@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import vlan_view, vlan_delete_view, menu_view, network_view, address_view, check_ip_in_db, get_network_addresses, modify_address, donne_ip
+from .views import vlan_view, vlan_delete_view, menu_view, network_view, address_view, check_ip_in_db, get_network_addresses, modify_address, donne_ip, get_free_ip_addresses
 
 app_name = 'network'
 urlpatterns = [
@@ -13,4 +13,6 @@ urlpatterns = [
     path('getNetworkAddresses/', get_network_addresses, name='getNetworkAddresses'),
     path('modifyAddress/', modify_address, name='modify_address'),
     path('donneIp', donne_ip, name='donne_ip'),
+    # exemple d'url pour test : http://127.0.0.1:8000/network/getFreeIpAddresses/?vlan_id=20
+    path('getFreeIpAddresses/', get_free_ip_addresses, name='get_free_ip_addresses'),
 ]
