@@ -35,19 +35,36 @@ hr {
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    border-radius: 8px;
+    border-radius: 10px;
     width: 200px;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 20px;
-    font-weight: bold;
+.modal-content #hostname,
+.modal-content #description,
+.modal-content button {
+    width: 195px;
 }
 
-.close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
+.modal-content input {
+    border-radius: 3px;
+}
+
+.modal-content {
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
+    font-size: 20px;
+    color: grey;
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-content .close:hover {
+    color: black;
+    font-weight: bold;
+    transform: scale(1.5);
 }

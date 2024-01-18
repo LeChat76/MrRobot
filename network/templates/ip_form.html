@@ -36,22 +36,34 @@
 </table>
 
 <!-- Modal -->
-<div class="modal" id="addressModal" style="display: none;">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div>
-            <label for="hostname">Hostname:</label>
-            <input type="text" id="hostname" name="hostname">
+<form method="POST" action="{% url 'network:modify_address' %}">
+    <div class="modal" id="addressModal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div>
+                <label for="hostname">Nom d'hote:</label>
+                <input type="text" id="hostname" name="hostname">
+            </div>
+            <p></p>
+            <div>
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description">
+            </div>
+            <p></p>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="pingFromHost" name="pingFromHost">
+                <label class="form-check-label" for="pingFromHost">Ping depuis l'hôte</label>
+            </div>
+            <p></p>
+            <div>
+                <input type="checkbox" class="form-check-input" id="pingFromServer" name="pingFromServer">
+                <label class="form-check-label" for="pingFromServer">Ping depuis le serveur</label>
+            </div>
+            <p></p>
+            <button id="submitBtn">Submit</button>
         </div>
-        <p></p>
-        <div>
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description">
-        </div>
-        <p></p>
-        <button id="submitBtn">Submit</button>
     </div>
-</div>
+</form>
 
 
 <script src="{% static 'js/ip.js' %}"></script>

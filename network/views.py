@@ -192,8 +192,7 @@ def donne_ip(request):
 
     # verification si aucun vlan disponible
     if not availableVlans:
-        # if request.method == 'GET':
-            message = "Aucun VLAN disponible. Allez en créer d'autres ou supprimez des réseaux associés."
+        message = "Aucun VLAN disponible. Allez en créer d'autres ou supprimez des réseaux associés."
 
     return render(request, template_name, {'availableVlans': availableVlans, 'message': message})
 
