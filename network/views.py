@@ -115,7 +115,7 @@ def address_view(request):
 
     # Sélection des vlans associés à un réseau et appartenant à l'utilisateur connecté
     availableVlans = Vlan.objects.filter(
-        address__isnull=False,
+        # address__isnull=False,
         user=request.user
     ).order_by('vlan_id').distinct()
 
