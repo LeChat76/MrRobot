@@ -12,7 +12,7 @@ urlpatterns = [
     # exemple d'url pour test : http://127.0.0.1:8000/network/getNetworkAddresses/?vlan_id=20
     path('getNetworkAddresses/', get_network_addresses, name='getNetworkAddresses'),
     path('modifyAddress/', modify_address, name='modify_address'),
-    path('donneIp', donne_ip, name='donne_ip'),
+    path('donneIp/', donne_ip, name='donne_ip'),
     # exemple d'url pour test : http://127.0.0.1:8000/network/getFreeIpAddresses/?vlan_id=20
     path('getFreeIpAddresses/', get_free_ip_addresses, name='get_free_ip_addresses'),
 ]

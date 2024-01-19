@@ -16,19 +16,18 @@
     <p></p>
 {% endif %}
 {% endautoescape %}
-<form method="GET">
-    <p id="vlanTitle">Sélectionnez le VLAN du réseau :</p>
-    <select name="vlans" id="vlansList">
-        <option value="">-- Choisissez un VLAN --</option>
-        {% for vlan in availableVlans %}
-            <option value="{{ vlan.vlan_id }}">
-                {{ vlan.vlan_id }} - {{ vlan.name }}
-            </option>
-        {% endfor %}
-    </select>
 
-    <p><hr class="joliTrait" style="display: none;"></p>
-</form>
+<p id="vlanTitle">Sélectionnez le VLAN du réseau :</p>
+<select name="vlans" id="vlansList" style="width: 200px;">
+    <option value="">-- Choisissez un VLAN --</option>
+    {% for vlan in availableVlans %}
+        <option value="{{ vlan.vlan_id }}">
+            {{ vlan.vlan_id }} - {{ vlan.name }}
+        </option>
+    {% endfor %}
+</select>
+
+<p><hr class="joliTrait" style="display: none;"></p>
 
 <form method="POST" action="{% url 'network:address_view' %}">
     <table id="address-table" style="display: none;">

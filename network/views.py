@@ -175,14 +175,30 @@ def modify_address(request):
         address.description = description
         address.save()
         return JsonResponse({'success': True, 'message': 'Données mises à jour avec succès'})
-    return JsonResponse({'success': False, 'message': 'Méthode non autorisée'})
+    return JsonResponse({'success': False, 'message': 'Méthode non autorisée'}, status=405)
+
+# @login_required
+# def modify_address2(request):
+#     # modifie les valeurs des champs d'une address dans la table address
+
+#     if request.method == "POST":
+#         addressId = request.POST.get('addressId')
+#         hostname = request.POST.get('hostname')
+#         description = request.POST.get('description')
+#         selected_vlan = request.POST.get('vlan')
+
+#         print("selected_vlan :", selected_vlan)
+
+#         address = Address.objects.get(id=addressId)
+#         address.hostname = hostname
+#         address.description = description
+#         address.save()
+#         return redirect("network:donne_ip", selected_vlan=selected_vlan)
 
 @login_required
 def donne_ip(request):
-    template_name = 'ip_form.html'
-    # form = AddressForm()
-    # network_addresses = []
     message = None
+    selected_vlan_index = None
 
     # Sélection des vlans associés à un réseau et appartenant à l'utilisateur connecté
     availableVlans = Vlan.objects.filter(
@@ -194,7 +210,14 @@ def donne_ip(request):
     if not availableVlans:
         message = "Aucun VLAN disponible. Allez en créer d'autres ou supprimez des réseaux associés."
 
-    return render(request, template_name, {'availableVlans': availableVlans, 'message': message})
+    if request.method == "POST":
+        address = address = Address.objects.get(id=request.POST.get('addressId'))
+        address.hostname = request.POST.get('hostname')
+        address.description = request.POST.get('description')
+        address.save()
+
+    print("SELECTED_VLAN_ID :", selected_vlan_index)
+    return render(request, 'ip_form.html', {'availableVlans': availableVlans, 'message': message})
 
 @login_required
 def get_free_ip_addresses(request):
@@ -203,7 +226,5 @@ def get_free_ip_addresses(request):
     network_addresses = Address.objects.filter(vlan__vlan_id=selected_vlan_id, user=request.user, hostname='', description='')
 
     data = [{'id': address.id, 'ip': address.ip} for address in network_addresses]
-
-    # print("DATA", data)
 
     return JsonResponse(data, safe=False)

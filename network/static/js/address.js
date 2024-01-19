@@ -84,17 +84,14 @@ document.getElementById("vlansList").addEventListener("change", function () {
     }
 });
 
-// document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("address-table").addEventListener("click", function(event) {
-        // vérification si c'est le bouton "modifier" qui est cliqué parmi tous les éléments du tableau
-        if (event.target.id && event.target.id.startsWith("modify-btn_")) {
-            // récupération de l'ID (dans l'ID du bouton), du hostname et de la description
-            var addressId = event.target.id.split("_")[1];
-            var hostname = document.getElementById("hostname_" + addressId).textContent;
-            var description = document.getElementById("description_" + addressId).textContent;
-            modifyAddress(addressId, hostname, description);
-        }
-    });
-// });
-
-
+// gestionnaire d'évenlent quand on click sur un élément de la table d'adresse
+document.getElementById("address-table").addEventListener("click", function(event) {
+    // vérification si c'est le bouton "modifier" qui est cliqué parmi tous les éléments du tableau
+    if (event.target.id && event.target.id.startsWith("modify-btn_")) {
+        // récupération de l'ID (dans l'ID du bouton), du hostname et de la description
+        var addressId = event.target.id.split("_")[1];
+        var hostname = document.getElementById("hostname_" + addressId).textContent;
+        var description = document.getElementById("description_" + addressId).textContent;
+        modifyAddress(addressId, hostname, description);
+    }
+});

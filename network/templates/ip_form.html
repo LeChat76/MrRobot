@@ -18,7 +18,7 @@
 {% endautoescape %}
 
 <p id="vlanTitle">Sélectionnez le VLAN:</p>
-<select name="vlans" id="vlansList">
+<select name="vlans" id="vlansList" style="width: 200px;">
     <option value="">-- Choisissez un VLAN --</option>
     {% for vlan in availableVlans %}
         <option value="{{ vlan.vlan_id }}">
@@ -27,7 +27,7 @@
     {% endfor %}
 </select>
 
-<p><hr id="joliTrait" style="display: none;"></p>
+<p></p><hr id="joliTrait" style="display: none;">
 
 <p id="ipDispo" style="display: none;">IP disponible(s) pour ce vlan :</p>
 
@@ -36,17 +36,25 @@
 </table>
 
 <!-- Modal -->
-<form method="POST" action="{% url 'network:modify_address' %}">
+
+<form method="POST" action="{% url 'network:donne_ip' %}">
+    {% csrf_token %}
     <div class="modal" id="addressModal" style="display: none;">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div>
+                <span id="selectedIpAddress"></span>
+                <p><hr/></p>
+            </div>
+            <div>
                 <label for="hostname">Nom d'hote:</label>
+                <p></p>
                 <input type="text" id="hostname" name="hostname">
             </div>
             <p></p>
             <div>
                 <label for="description">Description:</label>
+                <p></p>
                 <input type="text" id="description" name="description">
             </div>
             <p></p>
@@ -60,7 +68,9 @@
                 <label class="form-check-label" for="pingFromServer">Ping depuis le serveur</label>
             </div>
             <p></p>
-            <button id="submitBtn">Submit</button>
+            <button id="submitBtn">Enregistrement</button>
+            <input type="hidden" id="addressId" name="addressId" value="">
+            <input type="hidden" id="selectedVlan" name="selectedVlan" value="">
         </div>
     </div>
 </form>

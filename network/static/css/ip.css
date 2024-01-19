@@ -1,10 +1,8 @@
-#vlansList {
+/* #vlansList {
     width: 200px;
-}
+} */
 
 hr {
-    /* petit trait pour faire joli  ;-) */
-    /* display: none; */
     border: 1px solid #adadad;
     width: 200px;
     margin: 0;
@@ -46,7 +44,7 @@ hr {
 }
 
 .modal-content input {
-    border-radius: 3px;
+    border-radius: 1px;
 }
 
 .modal-content {
