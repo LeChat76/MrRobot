@@ -1,5 +1,8 @@
 const joliTrait = document.getElementsByClassName("joliTrait")[0];
 const addressTable = document.getElementById("address-table");
+const vlanTitle = document.getElementById("vlanTitle");
+const vlansList = document.getElementById("vlansList");
+
 
 async function afficherAdresses(vlan_id) {
     joliTrait.style.display = "block";
@@ -76,6 +79,11 @@ function modifyEffect(buttonId) {
     }, 2500);
 }
 
+function noVlansAvailable() {
+    vlanTitle.style.display = "none";
+    vlansList.style.display = "none";
+}
+
 // gestionnaire d'évènement des la selection du vlan
 document.getElementById("vlansList").addEventListener("change", function () {
     var selectedVlanId = this.value;
@@ -93,5 +101,13 @@ document.getElementById("address-table").addEventListener("click", function(even
         var hostname = document.getElementById("hostname_" + addressId).textContent;
         var description = document.getElementById("description_" + addressId).textContent;
         modifyAddress(addressId, hostname, description);
+    }
+});
+
+// gestionnaire d'ouverture de page
+document.addEventListener("DOMContentLoaded", function() {
+    var vlanAvailability = document.getElementById('vlanAvailability');
+    if (vlanAvailability) {
+        noVlansAvailable();
     }
 });

@@ -26,6 +26,7 @@ hr {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    border-color: black;
 }
 
 .modal-content {
@@ -65,4 +66,8 @@ hr {
     color: black;
     font-weight: bold;
     transform: scale(1.5);
+}
+
+.address-ip-value:hover {
+    cursor: pointer;
 }

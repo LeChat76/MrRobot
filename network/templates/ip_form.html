@@ -21,8 +21,12 @@
 <select name="vlans" id="vlansList" style="width: 200px;">
     <option value="">-- Choisissez un VLAN --</option>
     {% for vlan in availableVlans %}
+    {% if selected_vlan|safe == vlan.vlan_id|safe %}
+        <option value="{{ vlan.vlan_id }}" selected>
+    {% else %}
         <option value="{{ vlan.vlan_id }}">
-            {{ vlan.vlan_id }} - {{ vlan.name }}
+    {% endif %}
+        {{ vlan.vlan_id }} - {{ vlan.name }}
         </option>
     {% endfor %}
 </select>
@@ -41,7 +45,7 @@
     {% csrf_token %}
     <div class="modal" id="addressModal" style="display: none;">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="closeModal()">&times;</span>
             <div>
                 <span id="selectedIpAddress"></span>
                 <p><hr/></p>
@@ -59,8 +63,8 @@
             </div>
             <p></p>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="pingFromHost" name="pingFromHost">
-                <label class="form-check-label" for="pingFromHost">Ping depuis l'hôte</label>
+                <input type="checkbox" class="form-check-input" id="pingFromHost" name="pingFromHost" disabled>
+                <label class="form-check-label" for="pingFromHost" style="user-select: none;">Ping depuis l'hôte</label>
             </div>
             <p></p>
             <div>

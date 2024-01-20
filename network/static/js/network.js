@@ -162,7 +162,8 @@ document.getElementById("vlansList").addEventListener("change", afficherAddBtn);
 
 // gestionnaire d'ouverture de page
 document.addEventListener("DOMContentLoaded", function() {
-    if (vlanAvailabilityDiv) {
+    var vlanAvailability = document.getElementById('vlanAvailability');
+    if (vlanAvailability) {
         noVlansAvailable();
     }
 });

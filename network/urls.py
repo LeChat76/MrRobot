@@ -1,5 +1,16 @@
 from django.urls import path
-from .views import vlan_view, vlan_delete_view, menu_view, network_view, address_view, check_ip_in_db, get_network_addresses, modify_address, donne_ip, get_free_ip_addresses
+from .views import (
+    vlan_view,
+    vlan_delete_view,
+    address_view,
+    modify_address,
+    donne_ip,
+    network_view,
+    menu_view,
+    check_ip_in_db,
+    get_network_addresses,
+    get_free_ip_addresses
+)
 
 app_name = 'network'
 urlpatterns = [
