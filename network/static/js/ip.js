@@ -7,6 +7,8 @@ const submitBtn = document.getElementById("submitBtn");
 const tableBody = document.getElementById("freeIpAddressesTableBody");
 const vlanTitle = document.getElementById("vlanTitle");
 const vlansList = document.getElementById("vlansList");
+const checkInputServerLabel = document.getElementsByClassName("form-check-label")[0];
+const checkInputServer = document.getElementById("pingFromServer");
 
 
 async function afficherIpDispos(vlan_id) {
@@ -75,6 +77,11 @@ function clickRadio(buttonId) {
 function noVlansAvailable() {
     vlanTitle.style.display = "none";
     vlansList.style.display = "none";
+}
+
+function activeCheckInputServerLabel() {
+    checkInputServer.disabled = false;
+    console.log("TOP");
 }
 
 // gestionnaire d'événement des qu'on selectionne un vlan

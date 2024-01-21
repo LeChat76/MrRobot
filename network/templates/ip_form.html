@@ -68,8 +68,8 @@
             </div>
             <p></p>
             <div>
-                <input type="checkbox" class="form-check-input" id="pingFromServer" name="pingFromServer">
-                <label class="form-check-label" for="pingFromServer">Ping depuis le serveur</label>
+                <input type="checkbox" class="form-check-input" id="pingFromServer" name="pingFromServer" disabled>
+                <label class="form-check-label" title="ne fonctionne pas chez cet hebergeur, denied" for="pingFromServer" ondblclick="activeCheckInputServerLabel()">Ping depuis le serveur</label>
             </div>
             <p></p>
             <button id="submitBtn">Enregistrement</button>
